@@ -6,6 +6,7 @@ import useCategoryStore from "./modules/categoryStore";
 import useCollectionStore from "./modules/collectionStore";
 import useMediaStore from "./modules/mediaStore";
 import settingStore from "./modules/settingStore";
+import menuStore from "./modules/menuStore"
 
 export default {
   useHomeStore,
@@ -15,5 +16,6 @@ export default {
   useCategoryStore,
   useCollectionStore,
   useMediaStore,
-  settingStore
+  settingStore,
+  menuStore
 }

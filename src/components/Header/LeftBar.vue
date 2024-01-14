@@ -13,20 +13,18 @@
         <ul  class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
           <li v-for="(value, key) in menu" :key="key" class="nav-item">
-            <div v-if="value.parentMenuId == 0" >
-              <router-link :to="value.url" style="position: relative;" class="nav-link">
-              <span v-html="value.icon"></span>
-              <p  >{{ value.name }} <i  class="fas fa-angle-left right"> </i> </p>
+            <router-link :to="value.href" style="position: relative;" class="nav-link">
+              <i :class="value.icon"></i>
+              <p  class="pl-2">{{ value.text }} <i  class="fas fa-angle-left right" v-if="value.children"> </i> </p>
             </router-link>
-             <ul class="nav nav-treeview" >
-                <li v-for="(value2, key2) in menu" :key="key2"  class="nav-item">
-                <router-link v-if="value2.parentMenuId === value.id"  :to="value2.url" class="nav-link">
-                  <span  v-html="value2.icon"></span>
-                  <p>{{ value2.name }}</p>
+            <ul class= "pr-3 nav nav-treeview" >
+                <li v-for="(children, i) in value.children" :key="i"  class="nav-item">
+                <router-link  :to="children.href" class="nav-link">
+                  <i :class="children.icon"></i>
+                  <p class="pl-2">{{ children.text }}</p>
                 </router-link>
               </li>
             </ul>
-            </div>
             
     </li> 
         </ul>
@@ -54,9 +52,8 @@ return {
   computed: { ...mapStores(menuStore) },
   setup(props) { },
   async created() {
-      await this.menuStore.getMenu()
-      this.menu = this.menuStore.db.data 
-      
+    await this.setmenuStore.getMenu();
+    this.menu = this.setmenuStore.db.data
   }
 });
 </script>

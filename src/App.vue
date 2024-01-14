@@ -2,7 +2,7 @@
 <template>
   <!-- Navbar -->
   <TopBar v-if="!ignoreLoadPartial"></TopBar>
-  <LeftBar  v-if="!ignoreLoadPartial"></LeftBar>
+  <LeftBar v-if="!ignoreLoadPartial"></LeftBar>
   <!-- /.navbar -->
   <!-- Content Wrapper. Contains page content -->
   <RouterView></RouterView>
@@ -46,7 +46,7 @@ export default defineComponent({
         'Request Active User',
         'Media List',
         'Exception',
-      ],
+      ]
     }
   },
   computed: {
@@ -56,7 +56,6 @@ export default defineComponent({
     }
   },
   created() {
-
   }
 });
 </script>

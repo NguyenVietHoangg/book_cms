@@ -1,7 +1,9 @@
 <template>
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside style="height: 100vh;" class=" main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/adminlte/index3.html" class="brand-link" target="_blank">
+   <div class="h-100 d-flex m-auto flex-column">
+    <div class="mb-auto">
+      <a href="/adminlte/index3.html" class="brand-link" target="_blank">
       <img src="/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
         style="opacity: .8">
       <span class="brand-text font-weight-light">CMS</span>
@@ -31,6 +33,10 @@
       </nav>
       <!-- /.sidebar-menu -->
     </div>
+    </div>
+    <p class="" @click="lognout()" style="cursor: pointer; color: #fff; padding: 24px;"><i class="fa-solid fa-right-from-bracket pr-3"></i> Logout</p>
+   </div>
+    
     <!-- /.sidebar -->
   </aside>
 </template>
@@ -38,19 +44,28 @@
 import { defineComponent } from "vue";
 import {menuStore} from "../../stores/modules/menuStore"
 import { mapStores } from "pinia";
+import { authStore } from "../../stores/modules/authStore";
 
 export default defineComponent({
   props: {
     item: {},
   },
+  setup(props) { },
   data(){
 return {
   menu : {},
   parentMenu : false
 }
   },
-  computed: { ...mapStores(menuStore) },
+  computed: { ...mapStores(menuStore,authStore) },
   setup(props) { },
+ methods:{
+   async lognout(){
+     //await this.authStore.logout(localStorage.getItem("KEY_USER_STORAGE"))
+    localStorage.removeItem("KEY_USER_STORAGE")
+     this.$router.push('/auth');
+    }
+  },
   async created() {
     await this.setmenuStore.getMenu();
     this.menu = this.setmenuStore.db.data

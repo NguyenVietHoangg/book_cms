@@ -7,5 +7,5 @@ export default {
   SAVE_SETTING_APP_INFO: {
     method: 'post',
     url: '/cms/setting/saveSettingAppInfo'
-  }
+  },
 }

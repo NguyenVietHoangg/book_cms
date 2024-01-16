@@ -12,7 +12,8 @@ export const saveSettingAppInfo = async (data = {}, opts = {}) => {
   return await connectServer[method](url, {data: data}, opts)
 }
 
+
 export default {
   getSettingAppInfo,
-  saveSettingAppInfo
+  saveSettingAppInfo,
 }

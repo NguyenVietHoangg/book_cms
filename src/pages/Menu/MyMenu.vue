@@ -72,7 +72,7 @@
         <div class="card-footer">
           <button
             type="button"
-            @click="updateData() && SubmitEvent()"
+            @click="updateData()"
             id="btnUpdate"
             class="btn btn-primary"
             disabled
@@ -103,6 +103,8 @@
 </template>
 
 <script>
+import { defineComponent } from "vue";
+
 import "../../static/bootstrap-iconpicker/js/jquery.js";
 import "../../static/bootstrap-iconpicker/css/bootstrap-4.css";
 
@@ -118,7 +120,11 @@ import { menuEditor } from "../../static/bootstrap-iconpicker/js/jquery-menu-edi
 import { mapStores } from "pinia";
 import { menuStore } from "../../stores/modules/menuStore";
 
-export default {
+export default defineComponent({
+  props: {
+    item: {},
+  },
+  setup(props) { },
   data() {
     return {
       editor: {},
@@ -183,7 +189,7 @@ export default {
      this.editor.setData( this.arrayjson);
 
   },
-};
+});
 </script>
 
 <style>

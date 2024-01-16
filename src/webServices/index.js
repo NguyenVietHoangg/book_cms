@@ -7,7 +7,8 @@ import collection from "./collectionService";
 import media from "./mediaService";
 import setting from "./settingService";
 import auth from "./authService";
-import menu from "./menuService"
+import menu from "./menuService";
+import permission from "./permissionService"
 export default {
   commonService: common,
   authorizationService: authorization,
@@ -18,5 +19,6 @@ export default {
   mediaService: media,
   settingService: setting,
   authService: auth,
-  menuService: menu
+  menuService: menu,
+  permissionService: permission,
 };

@@ -7,6 +7,7 @@ import useCollectionStore from "./modules/collectionStore";
 import useMediaStore from "./modules/mediaStore";
 import settingStore from "./modules/settingStore";
 import menuStore from "./modules/menuStore"
+import permissionStore from "./modules/permissionStore"
 
 export default {
   useHomeStore,
@@ -17,5 +18,6 @@ export default {
   useCollectionStore,
   useMediaStore,
   settingStore,
-  menuStore
+  menuStore,
+  permissionStore
 }

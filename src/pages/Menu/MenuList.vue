@@ -8,15 +8,18 @@
 
 <script>
 import MyMenuEditor from './MyMenu.vue';
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent(
+  {
+    props: {
+    item: {},
+  },
+  setup(props) { },
   components: {
     MyMenuEditor,
   },
-  // Các phần khác của component App của bạn
-};
+}
+);
 </script>
 
-<style>
-/* Các quy tắc CSS toàn cục cho ứng dụng của bạn */
-</style>

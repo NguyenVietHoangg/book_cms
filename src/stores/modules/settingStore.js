@@ -29,10 +29,13 @@ export const useSettingAppStore = defineStore(SETTING_DETAIL_STORE, {
     },
     async updateSettingApp(ids, status) {
       await wsv.settingService.updateSettingApp()
+    },
+    async getPermissionList(){
+      const res = await wsv.settingService.getPermission()
     }
   }
 })
 
 export default {
-  useSettingAppStore,
+  useSettingAppStore
 }

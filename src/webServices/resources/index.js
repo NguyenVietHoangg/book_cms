@@ -7,6 +7,7 @@ import media from "./mediaResource";
 import setting from "./settingResource";
 import auth from "./authResource";
 import menu from "./menuResource"
+import permission from "./permissionResource"
 
 export const connectServer = server;
 export const commonResource = common;
@@ -16,7 +17,8 @@ export const collectionResource = collection;
 export const mediaResource = media;
 export const settingResource = setting;
 export const authResource = auth;
-export const menuResource = menu
+export const menuResource = menu;
+export const permissionResource = permission;
 export default {
   connectServer,
   commonResource,
@@ -25,5 +27,6 @@ export default {
   collectionResource,
   settingResource,
   authResource,
-  menuResource
+  menuResource,
+  permissionResource
 };

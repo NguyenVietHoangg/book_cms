@@ -4,25 +4,19 @@ import wsv from "../../webServices";
 /**
  * lưu trữ Danh sách hiện tại
  */
-export const authStore = defineStore("auth", {
+export const permissionStore = defineStore("permission", {
   state: () => ({
     db: { a: "a" },
   }),
   actions: {
-    async login(data = {}) {
-      const res = await wsv.authService.getUser(data);
+    async getPermissionList(){
+      const res = await wsv.permissionService.getPermission()
       this.db = res;
-    },
-    async logout(data = {}) {
-      const res = await wsv.authService.outUser(data);
-      this.db = res;
-    },
-    async checkRole(){
-      
     }
   },
+  
 });
 
 export default {
-  authStore,
+  permissionStore,
 };

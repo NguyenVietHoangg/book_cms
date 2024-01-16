@@ -73,6 +73,13 @@ const routes = [
     }
   },
   {
+    path: "/app/permission",
+    name: "Setting Permission",
+    component: () => import ('@/pages/Setting/Permission.vue'),
+    props: {
+    }
+  },
+  {
     path: "/:catchAll(.*)",
     name: "Exception",
     component: () => import("@/pages/Exception/Error.vue"),

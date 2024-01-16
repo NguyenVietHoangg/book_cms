@@ -6,6 +6,13 @@ const routes = [
     props: {
     }
   },
+  {
+    path: "/app/permission",
+    name: "Setting Permission",
+    component: () => import ('@/pages/Setting/Permission.vue'),
+    props: {
+    }
+  }
   
 ];
 

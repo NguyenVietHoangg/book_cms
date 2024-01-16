@@ -4,4 +4,8 @@ export default {
     method: "post",
     url: "/login",
   },
+  GET_LOGOUT_API: {
+    method: "post",
+    url: "/logout",
+  },
 };

@@ -1,6 +1,7 @@
 <!-- File: MyMenuEditor.vue -->
 <template>
   <div class="content-wrapper" style="padding: 0.5rem 0.5rem">
+    <div id="toasttt"></div>
     <div class="row p-3">
       <div class="col-8">
         <ul id="myEditor" class="sortableLists list-group"></ul>
@@ -95,11 +96,11 @@
           >
             <i class="fas fa-plus"></i> Save Menu
           </button>
-      
         </div>
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -119,17 +120,19 @@ import { menuEditor } from "../../static/bootstrap-iconpicker/js/jquery-menu-edi
 
 import { mapStores } from "pinia";
 import { menuStore } from "../../stores/modules/menuStore";
-
+import {Toasttt} from  "../../static/toast"
 export default defineComponent({
   props: {
     item: {},
   },
-  setup(props) { },
+  components:{
+  },
+  setup(props) {},
   data() {
     return {
       editor: {},
       arrayjson: [],
-      my:[1,2,3]
+      my: [1, 2, 3],
     };
   },
   async mounted() {
@@ -149,8 +152,6 @@ export default defineComponent({
     //Calling the update method
     //const a =   Object.values( this.arrayjson)
     //this.arrayjson = [{"href":"http://home.com","icon":"fas fa-home","text":"Home", "target": "_top", "title": "My Home"},{"icon":"fas fa-chart-bar","text":"Opcion2"},{"icon":"fas fa-bell","text":"Opcion3"},{"icon":"fas fa-crop","text":"Opcion4"},{"icon":"fas fa-flask","text":"Opcion5"},{"icon":"fas fa-map-marker","text":"Opcion6"},{"icon":"fas fa-search","text":"Opcion7","children":[{"icon":"fas fa-plug","text":"Opcion7-1","children":[{"icon":"fas fa-filter","text":"Opcion7-1-1"}]}]}];
-  
-    
   },
   computed: { ...mapStores(menuStore) },
   methods: {
@@ -164,30 +165,39 @@ export default defineComponent({
     },
     async SubmitEvent() {
       try {
-        await this.setmenuStore.setMenu( this.editor.getString());
+        await this.setmenuStore.setMenu(this.editor.getString());
         console.log(this.setmenuStore.db.code);
         if (
           this.setmenuStore.db.code >= 200 &&
           this.setmenuStore.db.code <= 300
         ) {
-          console.log("okiiii");
+          Toasttt({
+            title: this.setmenuStore.db.title,
+            message: this.setmenuStore.db.message,
+            type: this.setmenuStore.db.type,
+            duration:this.setmenuStore.db.duration,
+          });
         } else {
-          console.log("not okiiii");
+          Toasttt({
+            title: this.setmenuStore.db.title,
+            message: this.setmenuStore.db.message,
+            type: this.setmenuStore.db.type,
+            duration:this.setmenuStore.db.duration,
+          });
         }
       } catch (error) {
         console.error("Error during login:", error);
       }
     },
     async SubmitEventMenu() {
-      console.log(this.editor.getString())
-     //await this.setmenuStore.getMenu();
+      console.log(this.editor.getString());
+      //await this.setmenuStore.getMenu();
     },
   },
   async created() {
     await this.setmenuStore.getMenu();
-    this.arrayjson = this.setmenuStore.db.data
-     this.editor.setData( this.arrayjson);
-
+    this.arrayjson = this.setmenuStore.db.data;
+    this.editor.setData(this.arrayjson);
   },
 });
 </script>

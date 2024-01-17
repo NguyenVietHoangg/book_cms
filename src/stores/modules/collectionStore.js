@@ -125,7 +125,13 @@ export const useCollectionDetailStore = defineStore(COLLECTION_DETAIL_STORE, {
             }
           }
         })
+      } else {
+        _showAlert({
+          message: res.message,
+          timer: res.duration,
+        })
       }
+
     }
   }
 })

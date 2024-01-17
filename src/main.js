@@ -35,6 +35,7 @@ app.component('UploadFile', UploadFile);
 app.component('VueMultiselect', VueMultiselect);
 app.component('FileManager', FileManager);
 
+
 app.use(pinia)
   .use(router)
   .use(store)

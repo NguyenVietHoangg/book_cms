@@ -1,5 +1,6 @@
 <template>
   <div class="content-wrapper">
+    <div id="toasttt"></div>
     <section class="content-header">
       <div class="container-fluid">
         <h1>
@@ -27,23 +28,23 @@
                     type="checkbox"
                     :name="key"
                     :checked="isCheckedAdmin(value)"
-                    @change="handleCheckboxChange(value)"
-                  />
+                    @change="handleCheckboxChange(value.id,2,$event)">
                 </td>
                 <td>
                   <input type="checkbox" :name="key"
                   :checked="isCheckedPartner(value)"
-                  @change="handleCheckboxChange(value)">
+                  @change="handleCheckboxChange(value.id,3,$event)">
                 </td>
                 <td>
                   <input type="checkbox" :name="key"
                   :checked="isCheckedSeller(value)"
-                  @change="handleCheckboxChange(value)">
+                  @change="handleCheckboxChange(value.id,4,$event)">
                 </td>
                 <td>
-                  <input type="checkbox" :name="key"
+                  <input type="checkbox" :name="key" 
+
                   :checked="isCheckedCustom(value)"
-                  @change="handleCheckboxChange(value)">
+                  @change="handleCheckboxChange(value.id,5,$event)">
                 </td>
               </tr>
             </tbody>
@@ -57,12 +58,13 @@
 import { defineComponent } from "vue";
 import { permissionStore } from "../../stores/modules/permissionStore";
 import { mapStores } from "pinia";
+import {Toasttt} from  "../../static/toast"
 export default defineComponent({
   props: {},
   data() {
     return {
       menuList: {},
-      checkedItems: false,
+      checkedItems: [],
     };
   },
   components: {},
@@ -81,13 +83,27 @@ export default defineComponent({
     isCheckedCustom(data) {
       return data.groupIds.includes("5");
     },
-    handleCheckboxChange(item) {
-      // Xử lý sự kiện khi checkbox thay đổi trạng thái
-      if (this.isChecked(item)) {
-
-      } else {
-        
+    async handleCheckboxChange(permissionId,groupId,event) {
+      const db = { permissionId: permissionId,groupId:groupId }
+       const isChecked = event.target.checked;
+      if(isChecked){
+        await this.permissionStore.addRoleHasPermission(db);
+        Toasttt({
+            title: this.permissionStore.db.title,
+            message: this.permissionStore.db.message,
+            type: this.permissionStore.db.type,
+            duration:this.permissionStore.db.duration,
+          });
+      } else{
+        await this.permissionStore.deleteRoleHasPermission(db);
+        Toasttt({
+            title: this.permissionStore.db.title,
+            message: this.permissionStore.db.message,
+            type: this.permissionStore.db.type,
+            duration:this.permissionStore.db.duration,
+          });
       }
+
     },
   },
   async created() {

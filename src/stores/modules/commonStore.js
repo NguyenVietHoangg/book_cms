@@ -14,6 +14,7 @@ export const commonRefsStore = defineStore('commonRefs', {
       if (!res.code) {
         this.commonRefs = res.data
       }
+      
     },
   }
 })

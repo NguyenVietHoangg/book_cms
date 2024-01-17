@@ -3,24 +3,27 @@
     <form @submit.enter.prevent="">
       <div class="form-group">
         <label for="name">Danh mục</label>
-        <Treeselect 
-          v-model="dataUpdate.categoryIds"
-          :multiple="true"
-          :options="commonRefsStore.commonRefs.category" />
+        <select class="form-control select2 select2-hidden-accessible" v-model="dataUpdate.categoryIds" multiple id="categorySelect" @change="changeCategorySelection">
+      <option v-for="category in commonRefsStore.commonRefs.category" :key="category.id" :value="category.id">
+        {{ category.label }}
+      </option>
+    </select>
       </div>
       <div class="form-group">
         <label for="name">Bộ sưu tập</label>
-        <Treeselect 
-          v-model="dataUpdate.collectionIds"
-          :multiple="true"
-          :options="commonRefsStore.commonRefs.collection" />
+        <select class="form-control select2 select2-hidden-accessible" v-model="dataUpdate.collectionIds" multiple id="collectionSelect" @change="changeCollectionSelection">
+      <option v-for="collection in commonRefsStore.commonRefs.collection" :key="collection.id" :value="collection.id">
+        {{ collection.label }}
+      </option>
+    </select>
       </div>
       <div class="form-group">
         <label for="name">Tags</label>
-        <Treeselect 
-          v-model="dataUpdate.tagIds"
-          :multiple="true"
-          :options="commonRefsStore.commonRefs.tag" />
+        <select class="form-control select2 select2-hidden-accessible" v-model="dataUpdate.tagIds" multiple id="tagSelect" @change="changeTagSelection">
+      <option v-for="tag in commonRefsStore.commonRefs.tag" :key="tag.id" :value="tag.id">
+        {{ tag.label }}
+      </option>
+    </select>
       </div>
       <VueMultiselect
         v-model="selected"

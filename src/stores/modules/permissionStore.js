@@ -12,6 +12,15 @@ export const permissionStore = defineStore("permission", {
     async getPermissionList(){
       const res = await wsv.permissionService.getPermission()
       this.db = res;
+    },
+    async addRoleHasPermission(data){
+      const res = await wsv.permissionService.addRoleHasPermission(data)
+      this.db = res;
+
+    },
+    async deleteRoleHasPermission(data){
+      const res = await wsv.permissionService.deleteRoleHasPermission(data)
+      this.db = res;
     }
   },
   

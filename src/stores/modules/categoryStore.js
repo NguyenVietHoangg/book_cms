@@ -141,7 +141,10 @@ export const categoryDetailStore = defineStore('categoryDetail', {
           }
         })
       } else {
-        console.log(" k cos quyeenf truy caapk")
+        _showAlert({
+          message: res.message,
+          timer: res.duration,
+        })
       }
 
     }

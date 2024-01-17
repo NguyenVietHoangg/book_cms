@@ -116,6 +116,11 @@ export const useProductDetailStore = defineStore(PRODUCT_DETAIL_STORE, {
             }
           }
         })
+      }else {
+        _showAlert({
+          message: res.message,
+          timer: res.duration,
+        })
       }
     }
   }
